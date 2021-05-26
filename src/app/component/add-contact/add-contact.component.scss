@@ -1,0 +1,11 @@
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+  
+.input-container > * {
+    width: 100%;
+    margin: 0 16px;
+}

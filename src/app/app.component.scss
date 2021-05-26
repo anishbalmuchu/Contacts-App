@@ -1,9 +1,11 @@
-.wrapper {
-    position: relative;
+.mainBody {
+    min-height: 550px;
+    flex: 1;
+    justify-content: center;
 }
 
-.main {
-    min-height: 220vh;
+.wrapper {
+    position: relative;
 }
 
 .foot-wrapper {

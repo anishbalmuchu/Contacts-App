@@ -1,5 +1,74 @@
-<div class='pad16'>
-    <h3>Contacts</h3>
-    <div class='pad16'>
+<div class="container">
+    <div class="labelContainer align-items-center">
+        <span>
+            <h3>Contacts</h3>
+        </span>
+        <span class="m-h-16">
+            <button mat-raised-button color="primary" (click)="addNew()">Add new</button>
+        </span>
+    </div>
+    <div class="tableContainer">
+        <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="serial">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.serial}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef style="padding-right: 0;"> Status </th>
+                <td mat-cell *matCellDef="let element" style="padding-right: 0;">
+                    <mat-icon *ngIf="element.status === 'active'" aria-hidden="false" aria-label="check icon"
+                        style="color:green">check</mat-icon>
+                    <mat-icon *ngIf="element.status !== 'active'" aria-hidden="false" aria-label="report_problem icon"
+                        style="color:red">report_problem</mat-icon>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef style="max-width: 10px; min-width: 10px; padding-right: 5px;">
+                </th>
+                <td mat-cell *matCellDef="let element" style="max-width: 10px; min-width: 10px; padding-right: 8px;">
+                    <button mat-icon-button color="primary" aria-label="edit icon" class="displayNone displayEditDelete"
+                        (click)="edit(element.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="del">
+                <th mat-header-cell *matHeaderCellDef style="max-width: 10px; min-width: 10px; padding-right: 5px;">
+                </th>
+                <td mat-cell *matCellDef="let element" style="max-width: 10px; min-width: 10px; padding-right: 16px;">
+                    <button mat-icon-button color="warn" aria-label="delete_forever icon"
+                        class="displayNone displayEditDelete" (click)="delete(element.id)">
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     </div>
 </div>

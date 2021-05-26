@@ -8,4 +8,5 @@ import { Component } from "@angular/core";
 export class AppComponent {
 
   title = "Contacts-App";
+  constructor() {}
 }

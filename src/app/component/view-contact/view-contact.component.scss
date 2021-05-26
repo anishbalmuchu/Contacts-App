@@ -1,0 +1,40 @@
+.container {
+    flex-direction: column;
+}
+
+.labelContainer {
+    width: 100%;
+    min-height: 64px;
+    max-height: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+.labelContainer {
+    width: auto;
+}
+
+table {
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+tr.mat-row:hover {
+    background: wheat;
+}
+
+tr.mat-row:hover .displayEditDelete{
+    opacity: 1 !important;
+}
+
+.displayNone {
+    opacity: 0;
+}
