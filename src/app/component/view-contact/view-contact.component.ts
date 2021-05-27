@@ -5,7 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { contacts } from '../../../assets/mock-data/data';
 
 import { ITableContact } from '../../model/contact';
-import { AddContactComponent } from '../add-contact/add-contact.component';
+import { CommonContactComponent } from '../common-contact/common-contact.component';
+import { ContactApiService } from '../../shared/services/contact-api/contact-api.service';
+import { DeleteContactComponent } from '../delete-contact/delete-contact.component';
 
 @Component({
   selector: 'app-view-contact',
@@ -13,7 +15,6 @@ import { AddContactComponent } from '../add-contact/add-contact.component';
   styleUrls: ['./view-contact.component.scss'],
 })
 export class ViewContactComponent implements OnInit {
-  rowData: Array<ITableContact> = [];
   dataSource: MatTableDataSource<ITableContact>;
   displayedColumns: Array<string> = [
     'serial',
@@ -26,16 +27,29 @@ export class ViewContactComponent implements OnInit {
     'del',
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private contactApiService: ContactApiService) {}
 
   ngOnInit() {
-    this.addSerial();
-    this.dataSource = new MatTableDataSource(this.rowData);
+    // this.fetchContacts();
+    this.localDataLoad();
+  }
+  fetchContacts() {
+    this.contactApiService.getContacts().subscribe(data => {
+      if (data.error) {
+        //Show error msg
+        } else {
+          //Show success msg
+          this.dataSource = new MatTableDataSource(this.addSerial(data));
+        }
+    });
   }
 
-  addSerial() {
-    const tData: Array<ITableContact> = [];
-    const data = contacts;
+  localDataLoad() {
+    this.dataSource = new MatTableDataSource(this.addSerial(contacts));
+  }
+
+  addSerial(data) {
+    const tData = [];
     data.forEach((item, index) => {
       tData.push({
         del: (index + 1).toString(),
@@ -43,25 +57,76 @@ export class ViewContactComponent implements OnInit {
         ...item,
       });
     });
-    this.rowData = tData;
-  }
-
-  edit(id) {
-    console.log(id);
-  }
-
-  delete(id) {
-    console.log(id);
+    return tData;
   }
 
   addNew(): void {
-    const dialogRef = this.dialog.open(AddContactComponent, {
+    const dialogRef = this.dialog.open(CommonContactComponent, {
+      disableClose: true,
       maxHeight: '60vh',
-      data: {},
+      data: {
+        contact: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          status: 'active',
+        },
+        mode: 'add',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      if (result.status === 'success') {
+        // this.fetchContacts();      ------ Uncomment when using calling service
+        this.localDataLoad();        // ------ Comment this if using services
+      } else {
+        console.log(result);
+      }
+    });
+  }
+
+  edit(id) {
+    const eContact = this.dataSource.data.find(item => item.id === id);
+    const dialogRef = this.dialog.open(CommonContactComponent, {
+      disableClose: true,
+      maxHeight: '60vh',
+      data: {
+        contact: {...eContact},
+        mode: 'edit',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.status === 'success') {
+        // this.fetchContacts();      ------ Uncomment when using calling service
+        this.localDataLoad();        // ------ Comment this if using services
+      } else {
+        console.log(result);
+      }
+    });
+  }
+
+  delete(id) {
+    const eContact = this.dataSource.data.find(item => item.id === id);
+    const dialogRef = this.dialog.open(DeleteContactComponent, {
+      disableClose: true,
+      minWidth: '350px',
+      maxWidth: '400px',
+      maxHeight: '250px',
+      minHeight: '200px',
+      data: {
+        contact: {...eContact},
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.status === 'success') {
+        // this.fetchContacts();      ------ Uncomment when using calling service
+        this.localDataLoad();        // ------ Comment this if using services
+      } else {
+        console.log(result);
+      }
     });
   }
 }

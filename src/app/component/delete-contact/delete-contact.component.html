@@ -1,0 +1,12 @@
+<div style="display: flex; align-items: center; margin: 16px 0">
+    <h1 mat-dialog-title style="margin: 0 16px;">Delete Contact</h1>
+    <mat-icon color="warn">delete_forever</mat-icon>
+</div>
+<div mat-dialog-content class="input-container">
+    <p class="m-v-10">Are you sure?</p>
+    <p class="m-v-10">Delete {{data.contact.firstName}} from contacts?</p>
+</div>
+<div mat-dialog-actions class="mb-auto">
+    <button class="m-h-16" mat-flat-button (click)="cancel()">Cancel</button>
+    <button class="m-h-16" mat-flat-button (click)="delete()" color="warn" cdkFocusInitial>Delete</button>
+</div>

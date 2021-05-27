@@ -95,24 +95,27 @@ app-add-contact {
     flex-direction: column;
 }
 
-.dialogSelect {
-    padding-right: 16px !important;
-    padding-left: 16px !important;
-    justify-content: left !important;
-}
-
 .mat-select-panel {
     flex-direction: column !important;
     max-width: 200px;
 }
 
-.cdk-overlay-pane {
-    width: 60%;
-    height: 60%;
-    min-height: 400px;
-    min-width: 400px;
-}
-
 .m-l-16 {
     margin-left: 16px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+  
+.input-container > * {
+    width: 100%;
+    margin: 0 16px;
+}
+
+.mb-auto {
+    margin-bottom: auto !important;
 }

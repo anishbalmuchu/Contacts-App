@@ -1,6 +1,8 @@
-export const contacts = [
+import { IContact } from '../../app/model/contact';
+
+export const contacts: Array<IContact> = [
     {
-        id: '12',
+        id: '99',
         firstName: 'Anish',
         lastName: 'Balmuchu',
         email: 'anishbalmuchu@gmail.com',
@@ -8,7 +10,7 @@ export const contacts = [
         status: 'active',
     },
     {
-        id: '23',
+        id: '88',
         firstName: 'Ankit',
         lastName: 'Ghosh',
         email: 'ankitghosh@gmail.com',
@@ -16,7 +18,7 @@ export const contacts = [
         status: 'inactive',
     },
     {
-        id: '34',
+        id: '77',
         firstName: 'Aman',
         lastName: 'Dev Burman',
         email: 'amanburman@gmail.com',
@@ -24,23 +26,23 @@ export const contacts = [
         status: 'inactive',
     },
     {
-        id: '45',
+        id: '66',
         firstName: 'Mano',
         lastName: 'Pan',
         email: 'manopan@gmail.com',
         phone: '7845123654',
         status: 'active',
+    },
+    {
+        id: '55',
+        firstName: 'Preetam',
+        lastName: 'Kumar',
+        email: 'preetamKumar@gmail.com',
+        phone: '9568748596',
+        status: 'inactive',
     },
     {
         id: '56',
-        firstName: 'Preetam',
-        lastName: 'Kumar',
-        email: 'preetamKumar@gmail.com',
-        phone: '9568748596',
-        status: 'inactive',
-    },
-    {
-        id: '67',
         firstName: 'Anish',
         lastName: 'Balmuchu',
         email: 'anishbalmuchu@gmail.com',
@@ -48,7 +50,7 @@ export const contacts = [
         status: 'inactive',
     },
     {
-        id: '78',
+        id: '57',
         firstName: 'Ankit',
         lastName: 'Ghosh',
         email: 'ankitghosh@gmail.com',
@@ -56,7 +58,7 @@ export const contacts = [
         status: 'active',
     },
     {
-        id: '89',
+        id: '58',
         firstName: 'Aman',
         lastName: 'Dev Burman',
         email: 'amanburman@gmail.com',
@@ -64,7 +66,7 @@ export const contacts = [
         status: 'active',
     },
     {
-        id: '98',
+        id: '59',
         firstName: 'Mano',
         lastName: 'Pan',
         email: 'manopan@gmail.com',
@@ -72,11 +74,11 @@ export const contacts = [
         status: 'inactive',
     },
     {
-        id: '87',
+        id: '60',
         firstName: 'Preetam',
         lastName: 'Kumar',
         email: 'preetamKumar@gmail.com',
         phone: '9568748596',
         status: 'active',
-    }
+    },
 ];

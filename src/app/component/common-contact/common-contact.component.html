@@ -1,0 +1,37 @@
+<div style="display: flex; align-items: center; margin: 16px 0">
+  <h1 mat-dialog-title style="margin: 0 16px;">{{data.mode === 'add' ? 'Add ' : 'Edit ' }}Contact</h1>
+  <mat-icon color="primary">badge</mat-icon>
+</div>
+<div class="input-container">
+  <mat-form-field appearance="standard">
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="First Name" required [(ngModel)]="data.contact.firstName">
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Last Name</mat-label>
+    <input matInput placeholder="Last Name" required [(ngModel)]="data.contact.lastName">
+  </mat-form-field>
+</div>
+<div class="input-container">
+  <mat-form-field appearance="standard">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" required [(ngModel)]="data.contact.email">
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Phone</mat-label>
+    <input matInput placeholder="Phone" required [(ngModel)]="data.contact.phone">
+  </mat-form-field>
+</div>
+<mat-form-field class="input-container">
+  <mat-label>Status</mat-label>
+  <mat-select [(ngModel)]="data.contact.status">
+    <mat-option value="active">Active</mat-option>
+    <mat-option value="inactive">Inactive</mat-option>
+  </mat-select>
+</mat-form-field>
+<div mat-dialog-actions class="m-l-16 mb-auto">
+  <button class="m-h-16" mat-stroked-button (click)="cancel()">Close</button>
+  <button *ngIf="data.mode === 'add'" class="m-h-16" mat-stroked-button (click)="submit()" cdkFocusInitial>Add</button>
+  <button *ngIf="data.mode === 'edit'" class="m-h-16" mat-stroked-button (click)="submit()"
+    cdkFocusInitial>Save</button>
+</div>
