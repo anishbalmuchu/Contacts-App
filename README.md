@@ -1,27 +1,40 @@
 # ContactsApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
 
-## Development server
+## Environment
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Angular CLI: 8.3.29
+Node: 12.18.0
+NPM - 6.14.4
 
-## Code scaffolding
+## Folder structure
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+app
+ |-- app-constants          ( Contains the api-names file which will contain api end points  )
+ |-- component              ( Contains the major components such as view-contact, delete-contact & common-contact )
+ |     |-- common-contact
+ |     |-- delete-contact
+ |     |-- view-contact
+ |
+ |-- model                  ( Contains the contact file which contains the interfaces used within application )
+ |-- shared                 ( Contains the shared components such as header & footer as well as shared services )
+       |-- footer
+       |-- header
+       |-- services         ( Contains the shared services Snackbar & Contact-api )
+             |-- contact-api
+             |-- snack-bar
+             
+## Running the application
 
-## Build
+Clone the repository
+In the project directory run following commands ( Make sure the environment is setup in advance)
+1. npm i
+2. ng serve -o
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This will run the application locally
+For deployment ready below points are needed to be kept in mind -
+1. ApiUrl needs to be configured in environment file
+2. ApiEnd points needs to be checked as per back-end endpoints
+3. After configuring the above, one needs to uncomment the required lines in the components that are using the api.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+For more details reach me at anishbalmuchu@gmail.com, +91-7004992744
