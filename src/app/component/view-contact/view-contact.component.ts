@@ -15,6 +15,7 @@ import { DeleteContactComponent } from '../delete-contact/delete-contact.compone
   styleUrls: ['./view-contact.component.scss'],
 })
 export class ViewContactComponent implements OnInit {
+  localContacts: Array<any>;
   dataSource: MatTableDataSource<ITableContact>;
   displayedColumns: Array<string> = [
     'serial',
@@ -27,7 +28,9 @@ export class ViewContactComponent implements OnInit {
     'del',
   ];
 
-  constructor(public dialog: MatDialog, private contactApiService: ContactApiService) {}
+  constructor(public dialog: MatDialog, private contactApiService: ContactApiService) {
+    this.localContacts = contacts;
+  }
 
   ngOnInit() {
     // this.fetchContacts();
@@ -45,7 +48,7 @@ export class ViewContactComponent implements OnInit {
   }
 
   localDataLoad() {
-    this.dataSource = new MatTableDataSource(this.addSerial(contacts));
+    this.dataSource = new MatTableDataSource(this.addSerial(this.localContacts));
   }
 
   addSerial(data) {
@@ -77,8 +80,14 @@ export class ViewContactComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.status === 'success') {
+      if (result.status) {
         // this.fetchContacts();      ------ Uncomment when using calling service
+        const arr = this.localContacts.map((obj) => obj.id);
+        let newId = Math.floor(Math.random() * 1000);
+        while (arr.includes(newId)) {
+          newId = Math.floor(Math.random() * 1000);
+        }
+        this.localContacts.push({...result.contact, id: newId});
         this.localDataLoad();        // ------ Comment this if using services
       } else {
         console.log(result);
@@ -98,8 +107,12 @@ export class ViewContactComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.status === 'success') {
+      if (result.status) {
         // this.fetchContacts();      ------ Uncomment when using calling service
+        const index = this.localContacts.findIndex(obj => obj.id === result.contact.id);
+        if (index > -1) {
+          this.localContacts[index] = result.contact;
+        }
         this.localDataLoad();        // ------ Comment this if using services
       } else {
         console.log(result);
@@ -121,8 +134,9 @@ export class ViewContactComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.status === 'success') {
+      if (result.status) {
         // this.fetchContacts();      ------ Uncomment when using calling service
+        this.localContacts = this.localContacts.filter(obj => obj.id !== id);
         this.localDataLoad();        // ------ Comment this if using services
       } else {
         console.log(result);

@@ -40,14 +40,15 @@ export class CommonContactComponent implements OnInit {
         status: this.data.contact.status,
       };
       console.log(payload);
-      this.dialogRef.close({ status: true });
       if (this.data.mode === 'add') {
         // this.addContactSubmit(payload);
         this.snackBarService.openSnackBar('Contact Added', 'Okay');
       } else {
         // this.editContactSubmit(payload);
+        payload.id = this.data.contact.id;
         this.snackBarService.openSnackBar('Contact Saved', 'Okay');
       }
+      this.dialogRef.close({ status: true, contact: payload });
     } else {
       // Check mandatory fields
         this.snackBarService.openSnackBar('Enter mandatory fields', 'Okay');
